@@ -1,0 +1,16 @@
+.material-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #505050;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 40px;
+}
+
+.material-button:hover {
+    -fx-background-color: #EAEAEA;
+    -fx-border-color: #505050;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}

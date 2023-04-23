@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="MenuHBox" maxHeight="23.0" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/start-menu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="homeButton" maxHeight="23" maxWidth="Infinity" mnemonicParsing="false" prefHeight="23.0"  text="Home" textAlignment="CENTER" textFill="#040404" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="Kristen ITC" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="settingButton" contentDisplay="CENTER" maxWidth="Infinity" maxHeight="23.0" mnemonicParsing="false" prefHeight="23.0"  text="Setting" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="Kristen ITC" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</HBox>

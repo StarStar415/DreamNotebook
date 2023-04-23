@@ -1,0 +1,18 @@
+#homeButton:hover {
+    -fx-background-color: #4EFEB3	; /* 將此更改為您想要的顏色 */
+}
+#homeButton {
+    -fx-background-color: #ADFEDC; /* 將此更改為您想要的顏色 */
+}
+#settingButton:hover {
+    -fx-background-color: #4EFEB3	; /* 將此更改為您想要的顏色 */
+}
+#settingButton {
+    -fx-background-color: #ADFEDC; /* 將此更改為您想要的顏色 */
+}
+/*
+#MenuHBox {
+    -fx-max-width: 100%;
+    -fx-max-height: 100%;
+}
+*/

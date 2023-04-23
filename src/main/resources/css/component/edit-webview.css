@@ -1,0 +1,10 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+body {
+    background-color: #FFFFFF;
+    font-family: "cwTeXYen", Helvetica, Arial, sans-serif !important;
+    font-weight: 300;
+    font-size: 1.3em
+    letter-spacing: 2px;
+    line-height: 1.1em;　
+}
