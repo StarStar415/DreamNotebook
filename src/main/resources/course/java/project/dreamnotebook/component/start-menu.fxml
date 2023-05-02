@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="MenuHBox" maxHeight="23.0" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/start-menu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="MenuHBox" maxHeight="23.0" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/start-menu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="course.java.project.dreamnotebook.controller.component.StartMenuController">
    <children>
       <Button fx:id="homeButton" maxHeight="23" maxWidth="Infinity" mnemonicParsing="false" prefHeight="23.0"  text="Home" textAlignment="CENTER" textFill="#040404" HBox.hgrow="ALWAYS">
          <font>

@@ -10,10 +10,14 @@ public class Notebook {
     // title 就是文件名稱
     private String title;
     private String content;
+    // 是否已存檔過
+    // 若處在剛新建文件，未存檔過的階段，則為 false
+    private Boolean hasSaved;
 
-    public Notebook(String title, String content) {
+    public Notebook(String title, String content, Boolean hasSaved) {
         this.title = title;
         this.content = content;
+        this.hasSaved = hasSaved;
     }
 
     static public Notebook readFromJsonFile(File file){
@@ -31,7 +35,7 @@ public class Notebook {
         fileName = fileName.substring(0, dotIndex); // 取得不包含副檔名的檔案名稱
         String title = fileName;
         String content = (String) map.get("content");
-        return new Notebook(title, content);
+        return new Notebook(title, content, true);
     }
 
     public String getTitle() {
@@ -48,5 +52,12 @@ public class Notebook {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setHasSaved(Boolean hasSaved) {
+        this.hasSaved = hasSaved;
+    }
+    public Boolean getHasSaved(){
+        return hasSaved;
     }
 }

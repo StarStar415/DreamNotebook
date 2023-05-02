@@ -4,9 +4,8 @@ import course.java.project.dreamnotebook.DreamNotebookApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.Parent;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 
@@ -37,5 +36,21 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void switchToFxml(String fxmlPath){
+        // 建立一個新的FXMLLoader
+        FXMLLoader loader = new FXMLLoader(MainController.class.getResource(fxmlPath));
+
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        Node fxmlNode = loader.getRoot();
+        // 不確定這行程式能不能用在所有 fxml，可能存在某些情況要額外包一層東西在 fxml 上
+        HBox.setHgrow(fxmlNode, Priority.ALWAYS);
+        MainController.subScreenRoot.getChildren().setAll(fxmlNode);
     }
 }

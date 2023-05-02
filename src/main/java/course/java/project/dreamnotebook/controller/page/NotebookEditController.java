@@ -1,30 +1,25 @@
 package course.java.project.dreamnotebook.controller.page;
 
+import course.java.project.dreamnotebook.controller.component.editFunction.*;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.object.Toast;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import course.java.project.dreamnotebook.object.ToastAnimationTime;
+import course.java.project.dreamnotebook.object.ToastType;
+import course.java.project.dreamnotebook.utils.KatexProcessor;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.IndexRange;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import org.markdown4j.Markdown4jProcessor;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -41,11 +36,16 @@ public class NotebookEditController implements Initializable {
     @FXML
     private WebView webView;
 
-    private int selectionStart;
-    private int selectionEnd;
-
     @FXML
     private HBox italicsButton;
+    @FXML
+    private HBox saveButton;
+    @FXML
+    private HBox printButton;
+    @FXML
+    private HBox deleteButton;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,7 +53,9 @@ public class NotebookEditController implements Initializable {
 
         textArea.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                webView.getEngine().loadContent(new Markdown4jProcessor().process(newValue));
+                String content = KatexProcessor.process(new Markdown4jProcessor().process(newValue));
+
+                webView.getEngine().loadContent(content);
             }
             catch (StringIndexOutOfBoundsException | IOException e) {
                 webView.getEngine().loadContent(newValue);
@@ -62,36 +64,33 @@ public class NotebookEditController implements Initializable {
 
         // 斜體功能
         italicsButton.setOnMouseClicked(e -> {
-            System.out.println("italic-click");
-            handleItalicButtonAction(e);
+            execEditFunction(new ItalicsController(textArea));
         });
 
-        // 存檔功能 (ctrl+s)
+        // 存檔功能 (ctrl+s 和 按鈕)
         textArea.setOnKeyPressed(e -> {
-            if (e.isControlDown() && e.getCode() == KeyCode.S) {
-                System.out.println("save");
-                saveNotebook(); // call your save method
+            if (pressCtrlS(e)) {
+                execEditFunction(new SaveController(notebook, textArea));
             }
+        });
+        saveButton.setOnMouseClicked(e -> {
+            execEditFunction(new SaveController(notebook, textArea));
+        });
+        
+
+        // 影印功能
+        printButton.setOnMouseClicked(e -> {
+            execEditFunction(new PrintController(webView, textArea));
+        });
+
+        // 刪除功能
+        deleteButton.setOnMouseClicked(e -> {
+            execEditFunction(new DeleteController(notebook, textArea));
         });
     }
 
-    private void saveNotebook(){
-        String filePath = "src/main/resources/NotebookFiles/"+notebook.getTitle()+".json";
-        try {
-            Path path = Paths.get(filePath);
-            String jsonContent = new String(Files.readAllBytes(path));
-            JSONObject jsonObject = new JSONObject(jsonContent);
-
-            // 修改JSON 中的某个 key 的值
-            jsonObject.put("content", textArea.getText());
-            Files.write(path, jsonObject.toString().getBytes());
-
-            Stage stage = (Stage) textArea.getScene().getWindow();
-            Toast.makeText(stage, "儲存成功", 1500, 200, 200);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    private static boolean pressCtrlS(KeyEvent e) {
+        return e.isControlDown() && e.getCode() == KeyCode.S;
     }
 
     public void setNotebook(Notebook notebook){
@@ -103,10 +102,7 @@ public class NotebookEditController implements Initializable {
         textArea.setText(content);
     }
 
-    @FXML
-    private void handleItalicButtonAction(MouseEvent event){
-        String selectedText = textArea.getSelectedText();
-        String italicText = "*" + selectedText + "*";
-        textArea.replaceSelection(italicText);
+    private void execEditFunction(EditFunction editFunction){
+        editFunction.run();
     }
 }

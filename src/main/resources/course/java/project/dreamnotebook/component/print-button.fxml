@@ -11,7 +11,7 @@
         <graphic>
             <ImageView fitHeight="15" preserveRatio="true">
                 <image>
-                    <Image url="@/images/edit-view/italic.png"/>
+                    <Image url="@/images/edit-view/printer.png"/>
                 </image>
             </ImageView>
         </graphic>

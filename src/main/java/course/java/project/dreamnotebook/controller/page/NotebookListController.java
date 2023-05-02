@@ -47,7 +47,7 @@ public class NotebookListController implements Initializable {
         }
 
         // render "New Notebook" 到 GridPane
-        Node newNotebook = generatePreviewElement(new Notebook("New Notebook", ""), true);
+        Node newNotebook = generatePreviewElement(new Notebook("New Notebook", "", false), true);
         putNodeToGridPane(gridPane, newNotebook, 0, 0);
 
 
@@ -90,10 +90,8 @@ public class NotebookListController implements Initializable {
             // 建立一個新的FXMLLoader
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
 
-            // 取得FXML文件的根節點
-            Parent root = null;
             try {
-                root = loader.load();
+                loader.load();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -14,8 +14,12 @@ import javafx.util.Duration;
 
 public final class Toast
 {
-    public static void makeText(Stage ownerStage, String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay)
+    public static void makeText(Stage ownerStage, String toastMsg, ToastAnimationTime toastAnimationTime, ToastType toastType)
     {
+        int toastDelay = toastAnimationTime.getToastDelay();
+        int fadeInDelay = toastAnimationTime.getFadeInDelay();
+        int fadeOutDelay = toastAnimationTime.getFadeOutDelay();
+
         Stage toastStage=new Stage();
         toastStage.initOwner(ownerStage);
         toastStage.setResizable(false);
@@ -31,7 +35,11 @@ public final class Toast
         toastStage.setY(ownerY + 50);
 
         StackPane root = new StackPane(text);
-        root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(108, 212, 146, 0.8); -fx-padding: 30px;");
+        switch (toastType){
+            case SUCCESS -> root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(108, 212, 146, 0.8); -fx-padding: 30px;");
+            case ERROR -> root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(141, 20, 20, 0.8); -fx-padding: 30px;");
+            case INFO -> root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(78, 141, 233, 0.8); -fx-padding: 30px;");
+        }
         root.setOpacity(0);
 
         Scene scene = new Scene(root);
