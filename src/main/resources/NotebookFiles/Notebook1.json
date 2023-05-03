@@ -1,1 +1,1 @@
-{"content":"This is my fi~~rst notebook. It's very exci~~t<u>ing!<\/u>\nhi\nh*ihih*\nidasd**asdasdas**\n測試\n\n## 哈囉"}
+{"content":"This is my fi~~rst notebook. It's very exci~~t<u>ing!<\/u>\nhi\nh*ihih*\nidasd**asdasdas**\n測試\n\n## 哈囉\n\n## latex 測試\n$\\frac{L}{R}$\n\n## 文字顏色測試\n<span style='color:#ff0000ff;'>test red<\/span>\n\n## 背景顏色測試\n<span style='background-color:#669966ff;'>test green \n<\/span>\n\n##文字+背景顏色\n<span style='background-color:#ffff4dff;'><span style='color:#0000ffff;'>testcolor:blue backgroundcolor:yellow<\/span><\/span>"}
