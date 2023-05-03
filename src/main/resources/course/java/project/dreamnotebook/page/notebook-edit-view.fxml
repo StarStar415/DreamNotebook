@@ -55,6 +55,16 @@
                   </graphic>
                </Label>
             </HBox>
+            <fx:include fx:id="changeTextColorButton" source="../component/changeTextColor-button.fxml" />
+            <!--colorPicker 螢光筆顏色選擇-->
+            <HBox fx:id="colorpicker2Button" maxHeight="50.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/edit-page-highlight-button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+               <Label fx:id="editButton2" alignment="CENTER" contentDisplay="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-cursor: HAND;" styleClass="material-button" text="">
+                  <graphic>
+                     <ColorPicker fx:id="colorPicker2" layoutX="100" layoutY="10" prefWidth="32" prefHeight="32" />
+                  </graphic>
+               </Label>
+            </HBox>
+
 
 
             <!-- Region 這樣可以把上下的東西推到兩邊 -->

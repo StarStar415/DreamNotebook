@@ -46,7 +46,11 @@ public class NotebookEditController implements Initializable {
     @FXML
     private ColorPicker colorPicker;
     @FXML
-    private HBox colorpickerButton;
+    private HBox changeTextColorButton;
+    @FXML
+    private ColorPicker colorPicker2;
+//    @FXML
+//    private HBox colorpickerButton;
 
 
     @Override
@@ -99,6 +103,15 @@ public class NotebookEditController implements Initializable {
         colorPicker.setValue(Color.RED);
         colorPicker.setOnAction(e ->{
             execEditFunction(new ColorPickerController(colorPicker));
+        });
+        changeTextColorButton.setOnMouseClicked(e -> {
+            execEditFunction(new ChangeTextColorController(textArea,colorPicker));
+        });
+
+        //文字顏色
+        colorPicker2.setValue(Color.RED);
+        colorPicker2.setOnAction(e ->{
+            execEditFunction(new ColorPickerController(colorPicker2));
         });
         highlightButton.setOnMouseClicked(e -> {
             execEditFunction(new HighlightController(textArea,colorPicker));

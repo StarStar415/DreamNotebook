@@ -15,6 +15,6 @@
     -fx-border-radius: 4px;
 }
 
-#colorPicker{
+#colorPicker,#colorPicker2{
    -fx-background-color: transparent;
 }
