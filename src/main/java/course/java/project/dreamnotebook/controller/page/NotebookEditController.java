@@ -2,29 +2,20 @@ package course.java.project.dreamnotebook.controller.page;
 
 import course.java.project.dreamnotebook.controller.component.editFunction.*;
 import course.java.project.dreamnotebook.object.Notebook;
-import course.java.project.dreamnotebook.object.Toast;
-import course.java.project.dreamnotebook.object.ToastAnimationTime;
-import course.java.project.dreamnotebook.object.ToastType;
 import course.java.project.dreamnotebook.utils.KatexProcessor;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import org.json.JSONObject;
 import org.markdown4j.Markdown4jProcessor;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class NotebookEditController implements Initializable {
@@ -51,8 +42,11 @@ public class NotebookEditController implements Initializable {
     @FXML
     private HBox deleteButton;
     @FXML
-    private HBox lightpenButton;
-
+    private HBox highlightButton;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private HBox colorpickerButton;
 
 
     @Override
@@ -96,16 +90,18 @@ public class NotebookEditController implements Initializable {
                 execEditFunction(new SaveController(notebook, textArea));
             }
         });
-
-
-
         saveButton.setOnMouseClicked(e -> {
             execEditFunction(new SaveController(notebook, textArea));
         });
 
+
         //螢光筆
-        lightpenButton.setOnMouseClicked(e -> {
-            execEditFunction(new LightpenController(textArea));
+        colorPicker.setValue(Color.RED);
+        colorPicker.setOnAction(e ->{
+            execEditFunction(new ColorPickerController(colorPicker));
+        });
+        highlightButton.setOnMouseClicked(e -> {
+            execEditFunction(new HighlightController(textArea,colorPicker));
         });
 
         // 影印功能
