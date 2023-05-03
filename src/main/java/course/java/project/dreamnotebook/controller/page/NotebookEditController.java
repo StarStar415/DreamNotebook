@@ -50,6 +50,8 @@ public class NotebookEditController implements Initializable {
     private HBox printButton;
     @FXML
     private HBox deleteButton;
+    @FXML
+    private HBox lightpenButton;
 
 
 
@@ -57,14 +59,14 @@ public class NotebookEditController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         webView.getEngine().setUserStyleSheetLocation(getClass().getResource("/css/component/edit-webview.css").toString());
 
-        textArea.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                String content = KatexProcessor.process(new Markdown4jProcessor().process(newValue));
+                textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+                    try {
+                        String content = KatexProcessor.process(new Markdown4jProcessor().process(newValue));
 
-                webView.getEngine().loadContent(content);
-            }
-            catch (StringIndexOutOfBoundsException | IOException e) {
-                webView.getEngine().loadContent(newValue);
+                        webView.getEngine().loadContent(content);
+                    }
+                    catch (StringIndexOutOfBoundsException | IOException e) {
+                        webView.getEngine().loadContent(newValue);
             }
         });
 
@@ -82,21 +84,29 @@ public class NotebookEditController implements Initializable {
         underlineButton.setOnMouseClicked(e -> {
             execEditFunction(new UnderlineController(textArea));
         });
-        
+
         //刪除線功能
         deletelineButton.setOnMouseClicked(e -> {
             execEditFunction(new DeletelineController(textArea));
         });
+
         // 存檔功能 (ctrl+s 和 按鈕)
         textArea.setOnKeyPressed(e -> {
             if (pressCtrlS(e)) {
                 execEditFunction(new SaveController(notebook, textArea));
             }
         });
+
+
+
         saveButton.setOnMouseClicked(e -> {
             execEditFunction(new SaveController(notebook, textArea));
         });
-        
+
+        //螢光筆
+        lightpenButton.setOnMouseClicked(e -> {
+            execEditFunction(new LightpenController(textArea));
+        });
 
         // 影印功能
         printButton.setOnMouseClicked(e -> {

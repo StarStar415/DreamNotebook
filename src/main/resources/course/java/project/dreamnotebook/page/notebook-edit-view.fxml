@@ -44,6 +44,8 @@
             <fx:include fx:id="deletelineButton" source="../component/deleteline-button.fxml" />
             <fx:include fx:id="saveButton" source="../component/save-button.fxml" />
             <fx:include fx:id="printButton" source="../component/print-button.fxml" />
+            <fx:include fx:id="lightpenButton" source="../component/lightpen-button.fxml" />
+
 
             <!-- Region 這樣可以把上下的東西推到兩邊 -->
             <Region maxHeight="Infinity" maxWidth="Infinity" prefHeight="20.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
