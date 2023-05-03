@@ -16,7 +16,7 @@ public class HighlightController implements EditFunction {
     public void run(){
         String selectedText = textArea.getSelectedText();
         String selectedColor = colorPicker.getValue().toString().substring(2);
-        String highlightText = "<span style='color:#"+selectedColor+";'>" + selectedText + "</span>";
+        String highlightText = "<span style='background-color:#"+selectedColor+";'>" + selectedText + "</span>";
         textArea.replaceSelection(highlightText);
     }
 }
