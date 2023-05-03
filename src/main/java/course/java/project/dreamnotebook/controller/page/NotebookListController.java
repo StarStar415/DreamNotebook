@@ -39,7 +39,7 @@ public class NotebookListController implements Initializable {
         int gridRow = 0;
         int gridCol = 1;
 
-        // 設置 GridPane 的列寬為 GridPane 寬度的1/4
+        // 設置 GridPane 的行寬為 GridPane 寬度的1/4
         for (int i = 0; i < 4; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
             colConstraints.setPercentWidth(25);

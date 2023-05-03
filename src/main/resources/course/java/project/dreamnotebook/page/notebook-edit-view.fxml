@@ -39,6 +39,9 @@
       <top>
          <HBox fx:id="editHBox" maxWidth="Infinity" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <fx:include fx:id="italicsButton" source="../component/italics-button.fxml" />
+            <fx:include fx:id="boldButton" source="../component/bold-button.fxml" />
+            <fx:include fx:id="underlineButton" source="../component/underline-button.fxml" />
+            <fx:include fx:id="deletelineButton" source="../component/deleteline-button.fxml" />
             <fx:include fx:id="saveButton" source="../component/save-button.fxml" />
             <fx:include fx:id="printButton" source="../component/print-button.fxml" />
 

@@ -39,6 +39,12 @@ public class NotebookEditController implements Initializable {
     @FXML
     private HBox italicsButton;
     @FXML
+    private HBox boldButton;
+    @FXML
+    private HBox underlineButton;
+    @FXML
+    private HBox deletelineButton;
+    @FXML
     private HBox saveButton;
     @FXML
     private HBox printButton;
@@ -67,6 +73,20 @@ public class NotebookEditController implements Initializable {
             execEditFunction(new ItalicsController(textArea));
         });
 
+        //粗體功能
+        boldButton.setOnMouseClicked(e -> {
+            execEditFunction(new BoldController(textArea));
+        });
+
+        //底線功能
+        underlineButton.setOnMouseClicked(e -> {
+            execEditFunction(new UnderlineController(textArea));
+        });
+        
+        //刪除線功能
+        deletelineButton.setOnMouseClicked(e -> {
+            execEditFunction(new DeletelineController(textArea));
+        });
         // 存檔功能 (ctrl+s 和 按鈕)
         textArea.setOnKeyPressed(e -> {
             if (pressCtrlS(e)) {
