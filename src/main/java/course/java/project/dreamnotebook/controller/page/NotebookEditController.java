@@ -104,8 +104,8 @@ public class NotebookEditController implements Initializable {
         colorPicker.setOnAction(e ->{
             execEditFunction(new ColorPickerController(colorPicker));
         });
-        changeTextColorButton.setOnMouseClicked(e -> {
-            execEditFunction(new ChangeTextColorController(textArea,colorPicker));
+        highlightButton.setOnMouseClicked(e -> {
+            execEditFunction(new HighlightController(textArea,colorPicker));
         });
 
         //文字顏色
@@ -113,8 +113,8 @@ public class NotebookEditController implements Initializable {
         colorPicker2.setOnAction(e ->{
             execEditFunction(new ColorPickerController(colorPicker2));
         });
-        highlightButton.setOnMouseClicked(e -> {
-            execEditFunction(new HighlightController(textArea,colorPicker));
+        changeTextColorButton.setOnMouseClicked(e -> {
+            execEditFunction(new ChangeTextColorController(textArea,colorPicker2));
         });
 
         // 影印功能
