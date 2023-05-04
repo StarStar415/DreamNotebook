@@ -44,8 +44,6 @@
             <fx:include fx:id="boldButton" source="../component/bold-button.fxml" />
             <fx:include fx:id="underlineButton" source="../component/underline-button.fxml" />
             <fx:include fx:id="deletelineButton" source="../component/deleteline-button.fxml" />
-            <fx:include fx:id="saveButton" source="../component/save-button.fxml" />
-            <fx:include fx:id="printButton" source="../component/print-button.fxml" />
             <fx:include fx:id="highlightButton" source="../component/highlight-button.fxml" />
             <!--colorPicker 螢光筆顏色選擇-->
             <HBox fx:id="colorpickerButton" maxHeight="50.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/edit-page-highlight-button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -64,13 +62,15 @@
                   </graphic>
                </Label>
             </HBox>
-            <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />
-            <fx:include fx:id="pauseMusicButton" source="../component/pauseMusic-button.fxml" />
+
 
 
             <!-- Region 這樣可以把上下的東西推到兩邊 -->
             <Region maxHeight="Infinity" maxWidth="Infinity" prefHeight="20.0" prefWidth="30.0" HBox.hgrow="ALWAYS" />
-
+            <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />
+            <fx:include fx:id="pauseMusicButton" source="../component/pauseMusic-button.fxml" />
+            <fx:include fx:id="saveButton" source="../component/save-button.fxml" />
+            <fx:include fx:id="printButton" source="../component/print-button.fxml" />
             <fx:include fx:id="deleteButton" source="../component/delete-button.fxml" />
             <padding>
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

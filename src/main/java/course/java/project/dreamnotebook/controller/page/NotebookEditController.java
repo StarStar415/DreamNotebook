@@ -105,7 +105,7 @@ public class NotebookEditController implements Initializable {
 
 
         //螢光筆
-        colorPicker.setValue(Color.RED);
+        colorPicker.setValue(Color.web("98ff88"));
         colorPicker.setOnAction(e ->{
             execEditFunction(new ColorPickerController(colorPicker));
         });
@@ -114,7 +114,7 @@ public class NotebookEditController implements Initializable {
         });
 
         //文字顏色
-        colorPicker2.setValue(Color.RED);
+        colorPicker2.setValue(Color.web("98ff88"));
         colorPicker2.setOnAction(e ->{
             execEditFunction(new ColorPickerController(colorPicker2));
         });
