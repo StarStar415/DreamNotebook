@@ -10,13 +10,13 @@ public class MusicPlayer {
     static private MediaPlayer mediaPlayer;
     static private Boolean autoReplay = true;
 
+    static private Boolean nowMusicPlay = true;
+
+    static private Duration currentMediaTime;
+
     private MusicPlayer(){
     }
 
-    static public void init(){
-//        setMusic("lofi-study-112191.mp3");
-//        setVolume(1.0);
-    }
 
     static public void setMusic(String musicFileName, double volume){
         Media sound = new Media(new File("src/main/resources/music/"+ musicFileName).toURI().toString());
@@ -39,10 +39,17 @@ public class MusicPlayer {
     }
 
     static public void play(){
+        nowMusicPlay = true;
+        mediaPlayer.setStartTime(currentMediaTime);
         mediaPlayer.play();
     }
 
     static public void stop(){
+        nowMusicPlay = false;
+        currentMediaTime = mediaPlayer.getCurrentTime();
         mediaPlayer.stop();
     }
+
+    static public Boolean getNowMusicPlay() { return nowMusicPlay; }
+
 }

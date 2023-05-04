@@ -3,6 +3,7 @@ package course.java.project.dreamnotebook.controller.page;
 import course.java.project.dreamnotebook.controller.component.editFunction.*;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.utils.KatexProcessor;
+import course.java.project.dreamnotebook.utils.MusicPlayer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,6 +50,10 @@ public class NotebookEditController implements Initializable {
     private HBox changeTextColorButton;
     @FXML
     private ColorPicker colorPicker2;
+    @FXML
+    private HBox startMusicButton;
+    @FXML
+    private HBox pauseMusicButton;
 //    @FXML
 //    private HBox colorpickerButton;
 
@@ -126,6 +131,23 @@ public class NotebookEditController implements Initializable {
         deleteButton.setOnMouseClicked(e -> {
             execEditFunction(new DeleteController(notebook, textArea));
         });
+
+        //音樂播放顯示
+        setMusicStatus();
+
+        //撥放音樂
+        startMusicButton.setOnMouseClicked(e -> {
+            MusicPlayer.play();
+            //音樂播放顯示
+            setMusicStatus();
+        });
+
+        //暫停音樂
+        pauseMusicButton.setOnMouseClicked(e -> {
+            MusicPlayer.stop();
+            //音樂播放顯示
+            setMusicStatus();
+        });
     }
 
     private static boolean pressCtrlS(KeyEvent e) {
@@ -143,5 +165,12 @@ public class NotebookEditController implements Initializable {
 
     private void execEditFunction(EditFunction editFunction){
         editFunction.run();
+    }
+
+    private void setMusicStatus(){
+        startMusicButton.setManaged(!MusicPlayer.getNowMusicPlay());
+        startMusicButton.setVisible(!MusicPlayer.getNowMusicPlay());
+        pauseMusicButton.setManaged(MusicPlayer.getNowMusicPlay());
+        pauseMusicButton.setVisible(MusicPlayer.getNowMusicPlay());
     }
 }

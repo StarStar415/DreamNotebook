@@ -64,7 +64,8 @@
                   </graphic>
                </Label>
             </HBox>
-
+            <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />
+            <fx:include fx:id="pauseMusicButton" source="../component/pauseMusic-button.fxml" />
 
 
             <!-- Region 這樣可以把上下的東西推到兩邊 -->

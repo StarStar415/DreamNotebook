@@ -6,20 +6,14 @@
 
 <?import javafx.scene.control.Label?>
 
-<?import javafx.scene.control.ColorPicker?>
 <HBox fx:id="MenuHBox" maxHeight="50.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/edit-page-regular-button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-cursor: HAND;" styleClass="material-button" text="">
         <graphic>
             <ImageView fitHeight="15" preserveRatio="true">
                 <image>
-                    <Image url="@/images/edit-view/text-option.png"/>
+                    <Image url="@/images/edit-view/pause.png"/>
                 </image>
             </ImageView>
         </graphic>
     </Label>
-<!--    <Label fx:id="chooseColorButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-cursor: HAND;" styleClass="material-button" text="">-->
-<!--        <graphic>-->
-<!--            <ColorPicker fx:id="colorPicker" layoutX="100" layoutY="10" prefWidth="32" prefHeight="32" />-->
-<!--        </graphic>-->
-<!--    </Label>-->
 </HBox>
