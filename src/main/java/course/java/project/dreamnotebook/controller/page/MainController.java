@@ -53,4 +53,18 @@ public class MainController {
         HBox.setHgrow(fxmlNode, Priority.ALWAYS);
         MainController.subScreenRoot.getChildren().setAll(fxmlNode);
     }
+
+    static public Node loadFxmlNode(String fxmlPath){
+        FXMLLoader loader = new FXMLLoader(MainController.class.getResource(fxmlPath));
+
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        Node fxmlNode = loader.getRoot();
+
+        return fxmlNode;
+    }
 }

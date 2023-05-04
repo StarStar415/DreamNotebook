@@ -5,6 +5,7 @@ module course.java.project.dreamnotebook {
     requires com.fasterxml.jackson.databind;
     requires javafx.web;
     requires markdown4j;
+    requires javafx.media;
 
     opens course.java.project.dreamnotebook to javafx.fxml;
     exports course.java.project.dreamnotebook;

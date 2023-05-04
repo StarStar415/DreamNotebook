@@ -5,6 +5,7 @@ import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.object.Toast;
 import course.java.project.dreamnotebook.object.ToastAnimationTime;
 import course.java.project.dreamnotebook.object.ToastType;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
@@ -16,16 +17,16 @@ import java.nio.file.Files;
 
 public class DeleteController implements EditFunction{
     private Notebook notebook;
-    private TextArea textArea;
+    private Node node;
 
-    public DeleteController(Notebook notebook, TextArea textArea){
+    public DeleteController(Notebook notebook, Node node){
         this.notebook = notebook;
-        this.textArea = textArea;
+        this.node = node;
     }
 
     public void run(){
         String fileName = this.notebook.getTitle();
-        Stage stage = (Stage) this.textArea.getScene().getWindow();
+        Stage stage = (Stage) this.node.getScene().getWindow();
 
         if (!this.notebook.getHasSaved()){
             Toast.makeText(stage, "該文件尚未儲存", new ToastAnimationTime(), ToastType.INFO);

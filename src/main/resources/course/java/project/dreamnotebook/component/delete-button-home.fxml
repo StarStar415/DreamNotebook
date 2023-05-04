@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Label?>
+
+<HBox fx:id="MenuHBox" maxHeight="50.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../../../css/component/edit-page-home-button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" style="-fx-cursor: HAND;" styleClass="material-button" text="">
+        <graphic>
+            <ImageView fitHeight="15" preserveRatio="true">
+                <image>
+                    <Image url="@/images/edit-view/delete.png"/>
+                </image>
+            </ImageView>
+        </graphic>
+    </Label>
+</HBox>

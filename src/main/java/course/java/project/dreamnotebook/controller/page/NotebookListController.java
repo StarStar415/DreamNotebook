@@ -1,12 +1,20 @@
 package course.java.project.dreamnotebook.controller.page;
 
+import course.java.project.dreamnotebook.controller.component.editFunction.DeleteController;
+import course.java.project.dreamnotebook.controller.component.editFunction.EditFunction;
 import course.java.project.dreamnotebook.object.Notebook;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -76,7 +84,42 @@ public class NotebookListController implements Initializable {
             previewElement.setGraphic(createNewNotebookGraphic());
         }
         else{
-            previewElement.setGraphic(createRectangle());
+            StackPane previewStackPane = new StackPane();
+            HBox buttonHBox = new HBox();
+
+            // 設置底圖
+            previewStackPane.getChildren().add(createRectangle());
+            previewElement.setGraphic(previewStackPane);
+
+            // 設置顯示 hover button 的 pane
+            previewStackPane.getChildren().add(buttonHBox);
+//            buttonHBox.setStyle("-fx-background-color: lightgrey;");
+            // 將 按鈕欄 固定在右下角
+            StackPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
+
+
+            // 當滑鼠移到Pane上時顯示按鈕
+            previewStackPane.setOnMouseEntered(event -> {
+                // 刪除功能
+                Node deleteButton = MainController.loadFxmlNode("/course/java/project/dreamnotebook/component/delete-button-home.fxml");
+
+                deleteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+                    execEditFunction(new DeleteController(notebook, previewElement));
+                    e.consume();
+                });
+                buttonHBox.getChildren().add(deleteButton);
+
+                // 設置 HBox 靠在右下角
+                buttonHBox.setAlignment(Pos.BOTTOM_RIGHT);
+                buttonHBox.setPadding(new Insets(10, 10, 0, 10)); // 上、右、下、左
+
+
+            });
+
+            // 當滑鼠從Pane上移開時隱藏按鈕
+            previewStackPane.setOnMouseExited(event -> {
+                buttonHBox.getChildren().removeIf(node -> node instanceof Node); // 刪除所有按鈕
+            });
         }
 
         // set hover cursor
@@ -160,4 +203,7 @@ public class NotebookListController implements Initializable {
         return group;
     }
 
+    private void execEditFunction(EditFunction editFunction){
+        editFunction.run();
+    }
 }
