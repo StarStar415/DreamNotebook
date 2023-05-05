@@ -1,16 +1,16 @@
 #homeButton:hover {
-    -fx-background-color: #4EFEB3	; /* 將此更改為您想要的顏色 */
+    -fx-background-color: #4EFEB3;
 }
 #homeButton {
     -fx-background-radius: 0px;
-    -fx-background-color: #ADFEDC; /* 將此更改為您想要的顏色 */
+    -fx-background-color: #ADFEDC;
 }
 #settingButton:hover {
-    -fx-background-color: #4EFEB3	; /* 將此更改為您想要的顏色 */
+    -fx-background-color: #4EFEB3;
 }
 #settingButton {
     -fx-background-radius: 0px;
-    -fx-background-color: #ADFEDC; /* 將此更改為您想要的顏色 */
+    -fx-background-color: #ADFEDC;
 
 }
 /*
@@ -18,5 +18,8 @@
     -fx-max-width: 100%;
     -fx-max-height: 100%;
     #28F4C0
+    #98ff88
+    #4EFEB3
+    #ADFEDC
 }
 */

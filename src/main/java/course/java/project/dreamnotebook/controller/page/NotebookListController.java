@@ -3,6 +3,7 @@ package course.java.project.dreamnotebook.controller.page;
 import course.java.project.dreamnotebook.controller.component.editFunction.DeleteController;
 import course.java.project.dreamnotebook.controller.component.editFunction.EditFunction;
 import course.java.project.dreamnotebook.object.Notebook;
+import course.java.project.dreamnotebook.utils.RandomColor;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class NotebookListController implements Initializable {
@@ -165,12 +167,20 @@ public class NotebookListController implements Initializable {
         double width = 100;
         double height = 150;
         Rectangle rectangle = new Rectangle(width, height);
-        Color color = Color.rgb((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+        //設定初始顏色並去找相近顏色
+//        Color color = Color.rgb((int)(78), (int)(254), (int)(179));
+//        Color color = Color.rgb((int)(200), (int)(161), (int)(225));
+//        Color color2 = Color.rgb((int)(56), (int)(222), (int)(222));
+//        Color color = Color.rgb((int)(52), (int)(186), (int)(204));
+//        Color color = Color.web("98ff88");
+        Color color = Color.web("7FE77C");
+        color = RandomColor.generateSimilarColor(color, 0.1);
         rectangle.setFill(color);
         rectangle.setArcHeight(20);
         rectangle.setArcWidth(20);
         return rectangle;
     }
+
 
     // 創建黑色十字圖形
     private Node createNewNotebookGraphic() {
