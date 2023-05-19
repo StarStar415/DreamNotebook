@@ -58,6 +58,8 @@ public class NotebookEditController implements Initializable {
     private HBox pauseMusicButton;
     @FXML
     private HBox uploadImageButton;
+    @FXML
+    private HBox searchButton;
 
 //    @FXML
 //    private HBox colorpickerButton;
@@ -68,14 +70,14 @@ public class NotebookEditController implements Initializable {
 
         webView.getEngine().setUserStyleSheetLocation(getClass().getResource("/css/component/edit-webview.css").toString());
 
-                textArea.textProperty().addListener((observable, oldValue, newValue) -> {
-                    try {
-                        String content = KatexProcessor.process(new Markdown4jProcessor().process(newValue));
+        textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                String content = KatexProcessor.process(new Markdown4jProcessor().process(newValue));
 
-                        webView.getEngine().loadContent(content);
-                    }
-                    catch (StringIndexOutOfBoundsException | IOException e) {
-                        webView.getEngine().loadContent(newValue);
+                webView.getEngine().loadContent(content);
+            }
+            catch (StringIndexOutOfBoundsException | IOException e) {
+                webView.getEngine().loadContent(newValue);
             }
         });
 
@@ -158,6 +160,11 @@ public class NotebookEditController implements Initializable {
         //上傳圖片
         uploadImageButton.setOnMouseClicked(e -> {
             execEditFunction(new UploadImageController(textArea));
+        });
+
+        //搜尋功能
+        searchButton.setOnMouseClicked(e -> {
+            execEditFunction(new SearchController(textArea));
         });
     }
 

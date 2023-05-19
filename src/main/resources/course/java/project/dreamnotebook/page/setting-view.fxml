@@ -13,14 +13,14 @@
             <children>
                 <Label fx:id="titleLabel" maxWidth="Infinity" text="Setting" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="34.0" />
+                        <Font size="48.0" />
                     </font>
                 </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="titleLabel1" maxWidth="Infinity" text="Music">
+                  <Label fx:id="titleLabel1" maxWidth="Infinity" text="music selection">
                      <font>
-                        <Font size="34.0" />
+                        <Font name="Tw Cen MT" size="36.0" />
                      </font>
                   </Label>
                    <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />

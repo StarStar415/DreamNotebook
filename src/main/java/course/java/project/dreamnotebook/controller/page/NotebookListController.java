@@ -72,18 +72,17 @@ public class NotebookListController implements Initializable {
         putNodeToGridPane(gridPane, newNotebook, 0, 0);
 
 
-        // 把 Notebook 資料 render 到 GridPane
+        //讀取所有 notebook 的 json 檔案
         File[] files = new File("src/main/resources/NotebookFiles").listFiles();
 
+        //根據最後更新時間排序notebook
         ArrayList<Notebook> notebooks =new ArrayList<Notebook>();
         for (File file : files) {
             notebooks.add(Notebook.readFromJsonFile(file));
         }
-
-        for (Notebook nowNote : notebooks) System.out.println(nowNote.getLastModify());
         Collections.sort(notebooks, new NotebookComparator());
-        System.out.println("=======");
-        for (Notebook nowNote : notebooks) System.out.println(nowNote.getLastModify());
+
+        // 把 Notebook 資料 render 到 GridPane
         for (Notebook nowNotebook : notebooks) {
             Node previewElement = generatePreviewElement(nowNotebook, false);
 
