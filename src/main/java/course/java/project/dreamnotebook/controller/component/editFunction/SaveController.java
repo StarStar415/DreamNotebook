@@ -19,6 +19,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class SaveController implements EditFunction{
     private Notebook notebook;
     private TextArea textArea;
@@ -97,6 +100,7 @@ public class SaveController implements EditFunction{
 
             // 修改JSON 中的某个 key 的值
             jsonObject.put("content", textArea.getText());
+            jsonObject.put("lastModify", getNowTime());
             Files.write(path, jsonObject.toString().getBytes());
 
             Toast.makeText(stage, "儲存成功", new ToastAnimationTime(), ToastType.SUCCESS);
@@ -105,4 +109,15 @@ public class SaveController implements EditFunction{
             e.printStackTrace();
         }
     }
+
+    private String getNowTime(){
+        // 獲取現在的時間
+        LocalDateTime now = LocalDateTime.now();
+        // 定義日期時間格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // 格式化時間為字串
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime;
+    }
+
 }

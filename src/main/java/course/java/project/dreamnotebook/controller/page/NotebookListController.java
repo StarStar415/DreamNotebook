@@ -26,8 +26,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class NotebookListController implements Initializable {
     @FXML
@@ -56,17 +59,33 @@ public class NotebookListController implements Initializable {
             gridPane.getColumnConstraints().add(colConstraints);
         }
 
+
+        // 獲取現在的時間
+        LocalDateTime now = LocalDateTime.now();
+        // 定義日期時間格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // 格式化時間為字串
+        String formattedDateTime = now.format(formatter);
+
         // render "New Notebook" 到 GridPane
-        Node newNotebook = generatePreviewElement(new Notebook("New Notebook", "", false), true);
+        Node newNotebook = generatePreviewElement(new Notebook("New Notebook", "", false,formattedDateTime), true);
         putNodeToGridPane(gridPane, newNotebook, 0, 0);
 
 
         // 把 Notebook 資料 render 到 GridPane
         File[] files = new File("src/main/resources/NotebookFiles").listFiles();
 
+        ArrayList<Notebook> notebooks =new ArrayList<Notebook>();
         for (File file : files) {
-            Notebook notebook = Notebook.readFromJsonFile(file);
-            Node previewElement = generatePreviewElement(notebook, false);
+            notebooks.add(Notebook.readFromJsonFile(file));
+        }
+
+        for (Notebook nowNote : notebooks) System.out.println(nowNote.getLastModify());
+        Collections.sort(notebooks, new NotebookComparator());
+        System.out.println("=======");
+        for (Notebook nowNote : notebooks) System.out.println(nowNote.getLastModify());
+        for (Notebook nowNotebook : notebooks) {
+            Node previewElement = generatePreviewElement(nowNotebook, false);
 
             putNodeToGridPane(gridPane, previewElement, gridRow, gridCol);
 
@@ -76,6 +95,13 @@ public class NotebookListController implements Initializable {
                 gridCol = 0;
                 gridRow++;
             }
+        }
+    }
+
+    class NotebookComparator implements Comparator<Notebook> {
+        @Override
+        public int compare(Notebook notebook1, Notebook notebook2) {
+            return notebook2.getLastModify().compareTo(notebook1.getLastModify());
         }
     }
 
@@ -216,4 +242,5 @@ public class NotebookListController implements Initializable {
     private void execEditFunction(EditFunction editFunction){
         editFunction.run();
     }
+
 }
