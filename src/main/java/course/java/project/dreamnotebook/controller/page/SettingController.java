@@ -6,6 +6,7 @@ import course.java.project.dreamnotebook.utils.KatexProcessor;
 import course.java.project.dreamnotebook.utils.MusicPlayer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -28,23 +29,15 @@ public class SettingController implements Initializable {
     private HBox pauseMusicButton;
     @FXML
     private ComboBox<String> musicComboBox;
+    @FXML
+    private HBox uploadMusicButton;
+    @FXML
+    private TextArea textArea;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        File musicFolder = new File("src/main/resources/music/");
-        System.out.println(musicFolder);
-        if (musicFolder.exists() && musicFolder.isDirectory()) {
-            File[] files = musicFolder.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile()) {
-                        musicComboBox.getItems().add(file.getName());
-                    }
-                }
-            }
-        }
+        updateComboBox();
         musicComboBox.setValue("lofi-study-112191.mp3");
-
         // 監聽選取項目的變化
         musicComboBox.setOnAction(event -> {
             String selectedMusic = musicComboBox.getValue();
@@ -71,6 +64,32 @@ public class SettingController implements Initializable {
             //音樂播放顯示
             setMusicStatus();
         });
+
+        uploadMusicButton.setOnMouseClicked(e -> {
+            execEditFunction(new UploadMusicController(uploadMusicButton));
+            updateComboBox();
+            MusicPlayer.play();
+            setMusicStatus();
+        });
+    }
+
+    private void execEditFunction(EditFunction editFunction){
+        editFunction.run();
+    }
+
+    private void updateComboBox(){
+        musicComboBox.getItems().clear();
+        File musicFolder = new File("src/main/resources/music/");
+        if (musicFolder.exists() && musicFolder.isDirectory()) {
+            File[] files = musicFolder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        musicComboBox.getItems().add(file.getName());
+                    }
+                }
+            }
+        }
     }
 
     private void setMusicStatus(){

@@ -10,6 +10,8 @@ public class MusicPlayer {
     static private MediaPlayer mediaPlayer;
     static private Boolean autoReplay = true;
 
+    static private String musicFileName;
+
     static private Boolean nowMusicPlay = true;
 
     static private Duration currentMediaTime;
@@ -21,7 +23,7 @@ public class MusicPlayer {
     static public void setMusic(String musicFileName, double volume){
         Media sound = new Media(new File("src/main/resources/music/"+ musicFileName).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
-
+        musicFileName = musicFileName;
         if(autoReplay){
             mediaPlayer.setOnEndOfMedia(new Runnable() {
                 public void run() {
@@ -33,6 +35,8 @@ public class MusicPlayer {
 
         setVolume(volume);
     }
+
+    static public String getMusicFileName(){return musicFileName;}
 
     static public void setVolume(double volume){
         mediaPlayer.setVolume(volume);

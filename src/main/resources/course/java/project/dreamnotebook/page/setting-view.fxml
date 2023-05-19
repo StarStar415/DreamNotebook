@@ -27,6 +27,7 @@
                    <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />
                    <fx:include fx:id="pauseMusicButton" source="../component/pauseMusic-button.fxml" />
                   <ComboBox fx:id="musicComboBox" prefWidth="180.0" prefHeight="35"/>
+                   <fx:include fx:id="uploadMusicButton" source="../component/upload-music-button.fxml" />
                </children>
             </HBox>
             </children>
