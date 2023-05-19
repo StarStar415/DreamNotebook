@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import org.markdown4j.Markdown4jProcessor;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class NotebookEditController implements Initializable {
 
     @FXML
     private WebView webView;
+
 
     @FXML
     private HBox italicsButton;
@@ -54,12 +56,16 @@ public class NotebookEditController implements Initializable {
     private HBox startMusicButton;
     @FXML
     private HBox pauseMusicButton;
+    @FXML
+    private HBox uploadImageButton;
+
 //    @FXML
 //    private HBox colorpickerButton;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         webView.getEngine().setUserStyleSheetLocation(getClass().getResource("/css/component/edit-webview.css").toString());
 
                 textArea.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -147,6 +153,11 @@ public class NotebookEditController implements Initializable {
             MusicPlayer.stop();
             //音樂播放顯示
             setMusicStatus();
+        });
+
+        //上傳圖片
+        uploadImageButton.setOnMouseClicked(e -> {
+            execEditFunction(new UploadImageController(textArea));
         });
     }
 

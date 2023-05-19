@@ -19,6 +19,7 @@ public class DreamNotebookApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         stage.setTitle("DreamNotebook");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
 
         // set BGM
