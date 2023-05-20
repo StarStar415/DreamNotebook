@@ -62,8 +62,11 @@
                   </graphic>
                </Label>
             </HBox>
+
             <fx:include fx:id="uploadImageButton" source="../component/upload-image-button.fxml" />
             <fx:include fx:id="searchButton" source="../component/search-button.fxml" />
+            <fx:include fx:id="templateButton" source="../component/template-button.fxml" />
+
 
 
 

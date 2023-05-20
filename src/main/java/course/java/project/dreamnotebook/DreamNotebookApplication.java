@@ -23,7 +23,7 @@ public class DreamNotebookApplication extends Application {
         stage.show();
 
         // set BGM
-        MusicPlayer.setMusic("lofi-study-112191.mp3", 1.0);
+        MusicPlayer.setMusic("leva-eternity-149473.mp3", 1.0);
         MusicPlayer.play();
     }
 

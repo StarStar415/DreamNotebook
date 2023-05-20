@@ -61,8 +61,10 @@ public class NotebookEditController implements Initializable {
     @FXML
     private HBox searchButton;
 
-//    @FXML
-//    private HBox colorpickerButton;
+    @FXML
+    private HBox templateButton;
+
+
 
 
     @Override
@@ -157,6 +159,7 @@ public class NotebookEditController implements Initializable {
             setMusicStatus();
         });
 
+
         //上傳圖片
         uploadImageButton.setOnMouseClicked(e -> {
             execEditFunction(new UploadImageController(textArea));
@@ -165,6 +168,12 @@ public class NotebookEditController implements Initializable {
         //搜尋功能
         searchButton.setOnMouseClicked(e -> {
             execEditFunction(new SearchController(textArea));
+        });
+
+//        //模板功能
+        templateButton.setOnMouseClicked(e -> {
+            execEditFunction(new TemplateController(textArea));
+
         });
     }
 
