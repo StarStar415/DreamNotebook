@@ -54,6 +54,8 @@ public class NotebookEditController implements Initializable {
     private HBox startMusicButton;
     @FXML
     private HBox pauseMusicButton;
+    @FXML
+    private HBox templateButton;
 //    @FXML
 //    private HBox colorpickerButton;
 
@@ -147,6 +149,11 @@ public class NotebookEditController implements Initializable {
             MusicPlayer.stop();
             //音樂播放顯示
             setMusicStatus();
+        });
+
+        //模板功能
+        templateButton.setOnMouseClicked(e -> {
+            execEditFunction(new TemplateController(textArea));
         });
     }
 

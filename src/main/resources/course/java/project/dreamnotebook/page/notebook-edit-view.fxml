@@ -62,6 +62,7 @@
                   </graphic>
                </Label>
             </HBox>
+            <fx:include fx:id="templateButton" source="../component/template-button.fxml" />
 
 
 
