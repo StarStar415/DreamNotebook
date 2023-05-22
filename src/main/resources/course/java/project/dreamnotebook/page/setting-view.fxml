@@ -3,11 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="course.java.project.dreamnotebook.controller.page.SettingController">
+<HBox maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" prefWidth="486.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="course.java.project.dreamnotebook.controller.page.SettingController">
     <!--<HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">-->
     <VBox maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <VBox maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -17,7 +20,7 @@
                         <Font size="48.0" />
                     </font>
                 </Label>
-            <HBox fx:id="changeMusic" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="changeMusic" prefHeight="64.0" prefWidth="200.0">
                <children>
                   <Label fx:id="titleLabel1" maxWidth="Infinity" text="music selection">
                      <font>
@@ -26,8 +29,156 @@
                   </Label>
                    <fx:include fx:id="startMusicButton" source="../component/startMusic-button.fxml" />
                    <fx:include fx:id="pauseMusicButton" source="../component/pauseMusic-button.fxml" />
-                   <ComboBox fx:id="musicComboBox" prefWidth="250.0" prefHeight="20" styleClass="md-combo-box" stylesheets="@../../../../../css/component/music-combo-box.css"/>
+                   <ComboBox fx:id="musicComboBox" prefHeight="20" prefWidth="250.0" styleClass="md-combo-box" stylesheets="@../../../../../css/component/music-combo-box.css" />
                    <fx:include fx:id="uploadMusicButton" source="../component/upload-music-button.fxml" />
+               </children>
+            </HBox>
+            <HBox fx:id="changeMusic1" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                         <children>
+                             <VBox prefHeight="100.0" prefWidth="202.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                 <children>
+                                     <Label fx:id="titleLabel11" maxWidth="Infinity" text="使用說明" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                         <font>
+                                             <Font name="Yu Gothic Medium" size="36.0" />
+                                         </font>
+                                     </Label>
+                                     <Label fx:id="titleLabel112" maxWidth="Infinity" prefHeight="17.0" prefWidth="200.0">
+                                         <font>
+                                             <Font name="Yu Gothic Medium" size="6.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="titleLabel111" maxWidth="Infinity" prefHeight="27.0" prefWidth="186.0" text="筆記本支援語法">
+                           <font>
+                              <Font name="Yu Gothic Medium" size="25.0" />
+                           </font>
+                        </Label>
+                        <GridPane prefWidth="324.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="titleLabel1111" alignment="CENTER" maxWidth="Infinity" text="*Text*" textAlignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114" alignment="CENTER" maxWidth="Infinity" text="斜體" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114" alignment="CENTER" maxWidth="Infinity" text="**Text**" textAlignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel111141" alignment="CENTER" maxWidth="Infinity" text="粗體" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11112" alignment="CENTER" maxWidth="Infinity" text="~~Text~~" textAlignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel111143" alignment="CENTER" maxWidth="Infinity" text="刪除線" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111431" alignment="CENTER" maxWidth="Infinity" text="- Text" textAlignment="CENTER" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111432" alignment="CENTER" maxWidth="Infinity" text="無序清單" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111433" alignment="CENTER" maxWidth="Infinity" text="1. Text" textAlignment="CENTER" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114331" alignment="CENTER" maxWidth="Infinity" text="有序清單" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114332" alignment="CENTER" maxWidth="Infinity" text="[link text](https:// link)" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114333" alignment="CENTER" maxWidth="Infinity" text="插入連結" textAlignment="CENTER" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel111143321" alignment="CENTER" maxWidth="Infinity" text="![image alt](https://image)" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel111143322" alignment="CENTER" maxWidth="Infinity" text="插入圖片" textAlignment="CENTER" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111433221" alignment="CENTER" maxWidth="Infinity" text="`Text`" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111433222" alignment="CENTER" maxWidth="Infinity" text="文字欄位" textAlignment="CENTER" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114332211" alignment="CENTER" maxWidth="Infinity" text="\$L^aT_eX$" textAlignment="CENTER" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel11114332212" alignment="CENTER" maxWidth="Infinity" text="Latex 語法" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel111143322111" alignment="CENTER" maxWidth="Infinity" text="\$L^aT_eX$" textAlignment="CENTER" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111433221111" alignment="CENTER" maxWidth="Infinity" text="# Head" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="titleLabel1111433221112" alignment="CENTER" maxWidth="Infinity" text="標題" textAlignment="CENTER" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Yu Gothic Medium" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             </children>
