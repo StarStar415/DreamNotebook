@@ -37,10 +37,11 @@ public class SettingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         updateComboBox();
-        musicComboBox.setValue("lofi-study-112191.mp3");
+        musicComboBox.setValue("leva-eternity-149473.mp3");
         // 監聽選取項目的變化
         musicComboBox.setOnAction(event -> {
             String selectedMusic = musicComboBox.getValue();
+            MusicPlayer.setNowChangeMusic(true);
             musicComboBox.setValue(selectedMusic);
             MusicPlayer.stop();
             MusicPlayer.setMusic(selectedMusic, 1.0);

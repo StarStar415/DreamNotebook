@@ -16,6 +16,8 @@ public class MusicPlayer {
 
     static private Duration currentMediaTime;
 
+    static private Boolean nowChangeMusic = false;
+
     private MusicPlayer(){
     }
 
@@ -44,6 +46,10 @@ public class MusicPlayer {
 
     static public void play(){
         nowMusicPlay = true;
+        if(nowChangeMusic==true){
+            currentMediaTime = null;
+            nowChangeMusic=false;
+        }
         mediaPlayer.setStartTime(currentMediaTime);
         mediaPlayer.play();
     }
@@ -55,5 +61,9 @@ public class MusicPlayer {
     }
 
     static public Boolean getNowMusicPlay() { return nowMusicPlay; }
+
+    static public void setNowChangeMusic(Boolean change){
+        nowChangeMusic = change;
+    }
 
 }
