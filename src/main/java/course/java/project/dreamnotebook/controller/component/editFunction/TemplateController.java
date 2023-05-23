@@ -1,42 +1,57 @@
 package course.java.project.dreamnotebook.controller.component.editFunction;
 
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Region;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+import java.io.IOException;
 
 public class TemplateController implements EditFunction {
     private TextArea textArea;
+
+    private Dialog<Void> dialog;
     public TemplateController(TextArea textArea){
         this.textArea = textArea;
     }
 
-    public void run(){
-        Stage stage = new Stage();
-        stage.setTitle("Dropdown Menu");
+    private Stage dialogStage;
 
-        ObservableList<String> options = FXCollections.observableArrayList(
-                "Option 1",
-                "Option 2",
-                "Option 3"
-        );
 
-        ComboBox<String> comboBox = new ComboBox<>(options);
-        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // 处理选择项变化的逻辑
-            // 可以根据选择的项更新应用程序中的其他组件或执行其他操作
-            System.out.println("Selected Option: " + newValue);
-        });
+    public void run() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/template-list-view.fxml"));
+            Parent root = loader.load();
 
-        VBox vbox = new VBox(comboBox);
-        vbox.setSpacing(10);
+            // 創建跳出式窗
+            dialogStage = new Stage();
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setTitle("Template Dialog");
+            dialogStage.setScene(new Scene(root));
 
-        Scene scene = new Scene(vbox, 200, 150);
-        stage.setScene(scene);
-        stage.show();
+            // 處理關閉事件
+            dialogStage.setOnCloseRequest(event -> {
+                closeDialog();
+                event.consume();
+            });
+
+            // 顯示
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeDialog() {
+        if (dialogStage != null) {
+            dialogStage.close();
+        }
     }
 }
