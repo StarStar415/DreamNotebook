@@ -17,4 +17,6 @@ module course.java.project.dreamnotebook {
     opens course.java.project.dreamnotebook.object to javafx.fxml;
     exports course.java.project.dreamnotebook.controller.page;
     opens course.java.project.dreamnotebook.controller.page to javafx.fxml;
+    exports course.java.project.dreamnotebook.controller.component.editFunction;
+    opens course.java.project.dreamnotebook.controller.component.editFunction to javafx.fxml;
 }
