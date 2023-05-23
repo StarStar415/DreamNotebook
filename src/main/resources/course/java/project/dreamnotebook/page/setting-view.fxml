@@ -140,12 +140,12 @@
                                     <Font name="Yu Gothic Medium" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLabel1111433221" alignment="CENTER" maxWidth="Infinity" text="`Text`" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <Label fx:id="titleLabel1111433221" alignment="CENTER" maxWidth="Infinity" text="`Text`" textAlignment="CENTER" GridPane.rowIndex="8">
                                  <font>
                                     <Font name="Yu Gothic Medium" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLabel1111433222" alignment="CENTER" maxWidth="Infinity" text="文字欄位" textAlignment="CENTER" GridPane.rowIndex="8">
+                              <Label fx:id="titleLabel1111433222" alignment="CENTER" maxWidth="Infinity" text="文字欄位" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <font>
                                     <Font name="Yu Gothic Medium" size="20.0" />
                                  </font>
