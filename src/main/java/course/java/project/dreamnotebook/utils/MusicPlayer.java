@@ -18,6 +18,8 @@ public class MusicPlayer {
 
     static private Boolean nowChangeMusic = false;
 
+    static private double volume;
+
     private MusicPlayer(){
     }
 
@@ -25,15 +27,9 @@ public class MusicPlayer {
     static public void setMusic(String musicFileName, double volume){
         Media sound = new Media(new File("src/main/resources/music/"+ musicFileName).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
-        musicFileName = musicFileName;
-        if(autoReplay){
-            mediaPlayer.setOnEndOfMedia(new Runnable() {
-                public void run() {
-                    mediaPlayer.seek(Duration.ZERO);
-                    mediaPlayer.play();
-                }
-            });
-        }
+
+        MusicPlayer.musicFileName = musicFileName;
+        MusicPlayer.volume = volume;
 
         setVolume(volume);
     }
@@ -49,6 +45,14 @@ public class MusicPlayer {
         if(nowChangeMusic==true){
             currentMediaTime = null;
             nowChangeMusic=false;
+        }
+        if(autoReplay){
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                public void run() {
+                    MusicPlayer.setMusic(MusicPlayer.musicFileName, MusicPlayer.volume);
+                    MusicPlayer.play();
+                }
+            });
         }
         mediaPlayer.setStartTime(currentMediaTime);
         mediaPlayer.play();
