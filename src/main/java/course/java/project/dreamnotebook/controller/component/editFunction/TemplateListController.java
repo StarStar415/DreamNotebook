@@ -138,12 +138,6 @@ public class TemplateListController implements Initializable {
         double width = 100;
         double height = 150;
         Rectangle rectangle = new Rectangle(width, height);
-        //設定初始顏色並去找相近顏色
-//        Color color = Color.rgb((int)(78), (int)(254), (int)(179));
-//        Color color = Color.rgb((int)(200), (int)(161), (int)(225));
-//        Color color2 = Color.rgb((int)(56), (int)(222), (int)(222));
-//        Color color = Color.rgb((int)(52), (int)(186), (int)(204));
-//        Color color = Color.web("98ff88");
         Color color = Color.web("7FE77C");
         color = RandomColor.generateSimilarColor(color, 0.1);
         rectangle.setFill(color);

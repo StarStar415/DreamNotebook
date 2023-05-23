@@ -10,7 +10,6 @@
 
 <?import javafx.scene.layout.HBox?>
 <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="course.java.project.dreamnotebook.controller.component.editFunction.TemplateListController">
-<!--<HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxHeight="Infinity" maxWidth="Infinity" prefHeight="500.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">-->
     <VBox maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" >
        <VBox maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <children>

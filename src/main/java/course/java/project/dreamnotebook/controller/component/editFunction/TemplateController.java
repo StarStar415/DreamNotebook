@@ -16,13 +16,13 @@ import java.io.IOException;
 
 public class TemplateController implements EditFunction {
     private TextArea textArea;
-
+    private Stage dialogStage;
     private Dialog<Void> dialog;
     public TemplateController(TextArea textArea){
         this.textArea = textArea;
     }
 
-    private Stage dialogStage;
+
 
 
     public void run() {
