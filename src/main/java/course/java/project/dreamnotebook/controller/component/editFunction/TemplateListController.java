@@ -52,7 +52,7 @@ public class TemplateListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int gridRow = 0;
-        int gridCol = 1;
+        int gridCol = 0;
 
         // 設置 GridPane 的行寬為 GridPane 寬度的1/4
         for (int i = 0; i < 4; i++) {

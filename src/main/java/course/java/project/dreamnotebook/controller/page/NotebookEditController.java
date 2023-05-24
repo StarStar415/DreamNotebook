@@ -63,6 +63,8 @@ public class NotebookEditController implements Initializable {
 
     @FXML
     private HBox templateButton;
+    @FXML
+    private HBox templateSaveButton;
 
 
 
@@ -170,10 +172,15 @@ public class NotebookEditController implements Initializable {
             execEditFunction(new SearchController(textArea));
         });
 
-//        //模板功能
+        //模板功能
         templateButton.setOnMouseClicked(e -> {
             execEditFunction(new TemplateController(textArea));
 
+        });
+
+        //模板新增
+        templateSaveButton.setOnMouseClicked(e -> {
+            execEditFunction(new TemplateSaveController(notebook, textArea));
         });
     }
 
