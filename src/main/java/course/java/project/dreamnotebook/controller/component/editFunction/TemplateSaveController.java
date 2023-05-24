@@ -96,7 +96,7 @@ public class TemplateSaveController implements EditFunction{
             jsonObject.put("lastModify", getNowTime());
             Files.write(path, jsonObject.toString().getBytes());
 
-            Toast.makeText(stage, "儲存成功", new ToastAnimationTime(), ToastType.SUCCESS);
+            Toast.makeText(stage, "模板新增成功", new ToastAnimationTime(), ToastType.SUCCESS);
             notebook.setHasSaved(true);
         } catch (IOException e) {
             e.printStackTrace();
