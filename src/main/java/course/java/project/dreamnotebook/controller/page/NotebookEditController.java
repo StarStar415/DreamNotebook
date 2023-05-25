@@ -170,10 +170,9 @@ public class NotebookEditController implements Initializable {
             execEditFunction(new SearchController(textArea));
         });
 
-//        //模板功能
+        //模板功能
         templateButton.setOnMouseClicked(e -> {
             execEditFunction(new TemplateController(textArea));
-
         });
     }
 
@@ -184,6 +183,12 @@ public class NotebookEditController implements Initializable {
     public void setNotebook(Notebook notebook){
         this.notebook = notebook;
         textArea.setText(this.notebook.getContent());
+    }
+
+    public void setTemplate(Notebook template){
+        String selectedText = textArea.getSelectedText()+"I'm coming\n";
+        String content = selectedText + template.getContent();
+        textArea.replaceSelection(content);
     }
 
     private void setContent(String content){

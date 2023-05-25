@@ -52,7 +52,7 @@ public class TemplateListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int gridRow = 0;
-        int gridCol = 1;
+        int gridCol = 0;
 
         // 設置 GridPane 的行寬為 GridPane 寬度的1/4
         for (int i = 0; i < 4; i++) {
@@ -72,7 +72,7 @@ public class TemplateListController implements Initializable {
 
         // 把 Template 資料 render 到 GridPane
         for (Notebook nowTemplate : templates) {
-            Node previewElement = generatePreviewElement(nowTemplate, false);
+            Node previewElement = generatePreviewElement(nowTemplate);
 
             putNodeToGridPane(gridPane, previewElement, gridRow, gridCol);
 
@@ -85,7 +85,7 @@ public class TemplateListController implements Initializable {
         }
     }
 
-    private Node generatePreviewElement(Notebook template, boolean newNotebook){
+    private Node generatePreviewElement(Notebook template){
         // 生成外型
         Label previewElement = new Label(template.getTitle());
         StackPane previewStackPane = new StackPane();
@@ -104,7 +104,7 @@ public class TemplateListController implements Initializable {
             System.out.println("click");
 
             // 建立一個新的FXMLLoader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/template-list-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
 
             try {
                 loader.load();
@@ -112,11 +112,11 @@ public class TemplateListController implements Initializable {
                 throw new RuntimeException(ex);
             }
 
-            // 取得FXMLController//我要在這裡用一個TTemplateEditController
+            // 取得FXMLController
             NotebookEditController editController = loader.getController();
 
-            // 傳送內容給 EditView 的 Controller//要改
-            editController.setNotebook(template);
+            // 傳送內容給 EditView 的 Controller
+            editController.setTemplate(template);
 
             Node fxmlNode = loader.getRoot();
             HBox.setHgrow(fxmlNode, Priority.ALWAYS);

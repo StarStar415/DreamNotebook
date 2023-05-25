@@ -1,17 +1,13 @@
 package course.java.project.dreamnotebook.controller.component.editFunction;
 
 import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
 import java.io.IOException;
 
 public class TemplateController implements EditFunction {
