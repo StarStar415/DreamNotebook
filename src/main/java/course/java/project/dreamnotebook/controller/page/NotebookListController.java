@@ -155,19 +155,19 @@ public class NotebookListController implements Initializable {
 
         // 生成點擊功能
         previewElement.setOnMouseClicked(e -> {
-            System.out.println("click");
+                System.out.println("click");
 
-            // 建立一個新的FXMLLoader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
+                // 建立一個新的FXMLLoader
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
 
-            try {
-                loader.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
 
-            // 取得FXMLController
-            NotebookEditController editController = loader.getController();
+                // 取得FXMLController
+                NotebookEditController editController = loader.getController();
 
             // 傳送內容給 EditView 的 Controller
             editController.setNotebook(notebook);

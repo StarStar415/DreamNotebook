@@ -47,7 +47,7 @@ public class TemplateListController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    private final Path templateDir = Path.of("src/main/resources/TemplateFiles");
+    private NotebookEditController notebookEditController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,29 +100,20 @@ public class TemplateListController implements Initializable {
         previewElement.setCursor(Cursor.HAND);
 
         // 生成點擊功能
+        // 生成點擊功能
         previewElement.setOnMouseClicked(e -> {
             System.out.println("click");
 
-            // 建立一個新的FXMLLoader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/template-list-view.fxml"));
-
-            try {
-                loader.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-
-            // 取得FXMLController//我要在這裡用一個TTemplateEditController
-            NotebookEditController editController = loader.getController();
-
             // 傳送內容給 EditView 的 Controller//要改
-            editController.setNotebook(template);
-
-            Node fxmlNode = loader.getRoot();
-            HBox.setHgrow(fxmlNode, Priority.ALWAYS);
-            MainController.subScreenRoot.getChildren().setAll(fxmlNode);
+            String templateContent = template.getContent();
+            Notebook notebook = this.notebookEditController.getNotebook();
+            notebook.setContent(templateContent);
+            this.notebookEditController.setNotebook(notebook);
         });
         return previewElement;
+    }
+    public void setNotebookEditController(NotebookEditController notebookEditController){
+        this.notebookEditController = notebookEditController;
     }
 
     private void putNodeToGridPane(GridPane gridPane, Node previewElement, int row, int col){
