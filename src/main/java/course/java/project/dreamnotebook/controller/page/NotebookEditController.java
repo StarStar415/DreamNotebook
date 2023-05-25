@@ -185,11 +185,11 @@ public class NotebookEditController implements Initializable {
         textArea.setText(this.notebook.getContent());
     }
 
-    public void setTemplate(Notebook template){
+    /*public void setTemplate(Notebook template){
         String selectedText = textArea.getSelectedText()+"I'm coming\n";
         String content = selectedText + template.getContent();
         textArea.replaceSelection(content);
-    }
+    }*/
 
     private void setContent(String content){
         textArea.setText(content);

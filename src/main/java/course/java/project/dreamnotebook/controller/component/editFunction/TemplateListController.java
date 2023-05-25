@@ -103,24 +103,9 @@ public class TemplateListController implements Initializable {
         previewElement.setOnMouseClicked(e -> {
             System.out.println("click");
 
-            // 建立一個新的FXMLLoader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
-
-            try {
-                loader.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-
-            // 取得FXMLController
-            NotebookEditController editController = loader.getController();
-
-            // 傳送內容給 EditView 的 Controller
-            editController.setTemplate(template);
-
-            Node fxmlNode = loader.getRoot();
-            HBox.setHgrow(fxmlNode, Priority.ALWAYS);
-            MainController.subScreenRoot.getChildren().setAll(fxmlNode);
+            String selectedText = textArea.getSelectedText()+"I'm coming\n";
+            String content = selectedText + template.getContent();
+            textArea.replaceSelection(content);
         });
         return previewElement;
     }
