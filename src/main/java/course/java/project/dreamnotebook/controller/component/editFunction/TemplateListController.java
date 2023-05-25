@@ -47,7 +47,7 @@ public class TemplateListController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    private final Path templateDir = Path.of("src/main/resources/TemplateFiles");
+    private NotebookEditController notebookEditController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,7 +72,7 @@ public class TemplateListController implements Initializable {
 
         // 把 Template 資料 render 到 GridPane
         for (Notebook nowTemplate : templates) {
-            Node previewElement = generatePreviewElement(nowTemplate);
+            Node previewElement = generatePreviewElement(nowTemplate, false);
 
             putNodeToGridPane(gridPane, previewElement, gridRow, gridCol);
 
@@ -85,7 +85,7 @@ public class TemplateListController implements Initializable {
         }
     }
 
-    private Node generatePreviewElement(Notebook template){
+    private Node generatePreviewElement(Notebook template, boolean newNotebook){
         // 生成外型
         Label previewElement = new Label(template.getTitle());
         StackPane previewStackPane = new StackPane();
@@ -100,29 +100,20 @@ public class TemplateListController implements Initializable {
         previewElement.setCursor(Cursor.HAND);
 
         // 生成點擊功能
+        // 生成點擊功能
         previewElement.setOnMouseClicked(e -> {
             System.out.println("click");
 
-            // 建立一個新的FXMLLoader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/course/java/project/dreamnotebook/page/notebook-edit-view.fxml"));
-
-            try {
-                loader.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-
-            // 取得FXMLController
-            NotebookEditController editController = loader.getController();
-
-            // 傳送內容給 EditView 的 Controller
-            editController.setNotebook(template);
-
-            Node fxmlNode = loader.getRoot();
-            HBox.setHgrow(fxmlNode, Priority.ALWAYS);
-            MainController.subScreenRoot.getChildren().setAll(fxmlNode);
+            // 傳送內容給 EditView 的 Controller//要改
+            String templateContent = template.getContent();
+            Notebook notebook = this.notebookEditController.getNotebook();
+            notebook.setContent(templateContent);
+            this.notebookEditController.setNotebook(notebook);
         });
         return previewElement;
+    }
+    public void setNotebookEditController(NotebookEditController notebookEditController){
+        this.notebookEditController = notebookEditController;
     }
 
     private void putNodeToGridPane(GridPane gridPane, Node previewElement, int row, int col){
