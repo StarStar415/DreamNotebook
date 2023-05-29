@@ -32,7 +32,10 @@ public class UploadImageController implements EditFunction{
             File destinationFile = new File("src/main/resources/images/upload/" + selectedFile.getName());
             try {
                 Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                textArea.appendText("\n![](file:///" + destinationFile.getAbsolutePath() + ")"); // 在最後一行後面添加一個換行和圖片絕對路徑
+                String selectedText = textArea.getSelectedText();
+                String highlightText = "![](file:///" + destinationFile.getAbsolutePath() + ")";
+                textArea.replaceSelection(highlightText);
+//                textArea.appendText("\n![](file:///" + destinationFile.getAbsolutePath() + ")"); // 在最後一行後面添加一個換行和圖片絕對路徑
             } catch (IOException e) {
                 e.printStackTrace();
             }
