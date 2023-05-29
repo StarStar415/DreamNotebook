@@ -1,26 +1,23 @@
 package course.java.project.dreamnotebook.controller.page;
 
+import course.java.project.dreamnotebook.controller.component.FxmlSwitchController;
 import course.java.project.dreamnotebook.controller.component.editFunction.DeleteController;
 import course.java.project.dreamnotebook.controller.component.editFunction.EditFunction;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.utils.RandomColor;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -128,7 +125,7 @@ public class NotebookListController implements Initializable {
             // 當滑鼠移到Pane上時顯示按鈕
             previewStackPane.setOnMouseEntered(event -> {
                 // 刪除功能
-                Node deleteButton = MainController.loadFxmlNode("/course/java/project/dreamnotebook/component/delete-button-home.fxml");
+                Node deleteButton = FxmlSwitchController.loadFxmlNode("/course/java/project/dreamnotebook/component/delete-button-home.fxml");
 
                 deleteButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
                     execEditFunction(new DeleteController(notebook, previewElement));
@@ -174,7 +171,7 @@ public class NotebookListController implements Initializable {
 
             Node fxmlNode = loader.getRoot();
             HBox.setHgrow(fxmlNode, Priority.ALWAYS);
-            MainController.subScreenRoot.getChildren().setAll(fxmlNode);
+            FxmlSwitchController.switchToFxml(fxmlNode);
         });
         return previewElement;
     }
