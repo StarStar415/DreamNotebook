@@ -59,10 +59,9 @@ public class TemplateSaveController implements EditFunction{
         String filePath = "";
         Stage stage = (Stage) textArea.getScene().getWindow();
 
-        // 確認是不是新建的檔案
         try {
-            notebook.setTitle(setNewFileName());
-            filePath = "src/main/resources/TemplateFiles/" + notebook.getTitle() + ".json";
+//            notebook.setTitle(setNewFileName());
+                filePath = "src/main/resources/TemplateFiles/" + setNewFileName() + ".json";
         }
         catch (Exception e){
             Toast.makeText(stage, "取消儲存", new ToastAnimationTime(), ToastType.INFO);
@@ -97,7 +96,6 @@ public class TemplateSaveController implements EditFunction{
             Files.write(path, jsonObject.toString().getBytes());
 
             Toast.makeText(stage, "模板新增成功", new ToastAnimationTime(), ToastType.SUCCESS);
-            notebook.setHasSaved(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
