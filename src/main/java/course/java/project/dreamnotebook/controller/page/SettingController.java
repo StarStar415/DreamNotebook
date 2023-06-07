@@ -41,9 +41,9 @@ public class SettingController implements Initializable {
         // 監聽選取項目的變化
         musicComboBox.setOnAction(event -> {
             String selectedMusic = musicComboBox.getValue();
-            MusicPlayer.setNowChangeMusic(true);
             musicComboBox.setValue(selectedMusic);
-            MusicPlayer.stop();
+
+            System.out.println(selectedMusic);
             MusicPlayer.setMusic(selectedMusic, 1.0);
             MusicPlayer.play();
             setMusicStatus();

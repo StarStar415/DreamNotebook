@@ -25,6 +25,13 @@ public class MusicPlayer {
 
 
     static public void setMusic(String musicFileName, double volume){
+        currentMediaTime = null;
+        System.out.println(mediaPlayer);
+        if (MusicPlayer.mediaPlayer != null) {
+            MusicPlayer.mediaPlayer.stop();
+            MusicPlayer.mediaPlayer.dispose();
+        }
+
         Media sound = new Media(new File("src/main/resources/music/"+ musicFileName).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
 
@@ -43,6 +50,7 @@ public class MusicPlayer {
     static public void play(){
         nowMusicPlay = true;
         if(nowChangeMusic==true){
+            System.out.println("change!");
             currentMediaTime = null;
             nowChangeMusic=false;
         }
@@ -54,7 +62,10 @@ public class MusicPlayer {
                 }
             });
         }
-        mediaPlayer.setStartTime(currentMediaTime);
+
+        if(currentMediaTime!=null) {
+            mediaPlayer.setStartTime(currentMediaTime);
+        }
         mediaPlayer.play();
     }
 
