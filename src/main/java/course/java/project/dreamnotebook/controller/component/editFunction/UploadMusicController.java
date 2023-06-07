@@ -1,5 +1,6 @@
 package course.java.project.dreamnotebook.controller.component.editFunction;
 
+import course.java.project.dreamnotebook.utils.MusicPlayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -28,8 +30,16 @@ public class UploadMusicController implements EditFunction{
 
         if (selectedFile != null) {
             try {
-                String musicFolder = "src/main/resources/music/"; // 音樂資料夾路徑
-                Path destination = Path.of(musicFolder, selectedFile.getName());
+                File jarFile = null;
+                try {
+                    jarFile = new File(MusicPlayer.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+                File parentDirectory = jarFile.getParentFile();
+                File musicFolder = new File(parentDirectory, "music");
+//                String musicFolder = "src/main/resources/music/"; // 音樂資料夾路徑
+                Path destination = Path.of(musicFolder.toString(), selectedFile.getName());
                 Files.copy(selectedFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("音樂已成功上傳至 " + destination);
             } catch (IOException e) {

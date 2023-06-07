@@ -4,6 +4,7 @@ import course.java.project.dreamnotebook.controller.component.editFunction.Delet
 import course.java.project.dreamnotebook.controller.component.editFunction.EditFunction;
 import course.java.project.dreamnotebook.controller.page.MainController;
 import course.java.project.dreamnotebook.controller.page.NotebookEditController;
+import course.java.project.dreamnotebook.controller.page.NotebookListController;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.utils.RandomColor;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -62,7 +64,15 @@ public class TemplateListController implements Initializable {
         }
 
         //讀取所有 template 的 json 檔案
-        File[] files = new File("src/main/resources/TemplateFiles").listFiles();
+        File jarFile = null;
+        try {
+            jarFile = new File(NotebookListController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        File parentDirectory = jarFile.getParentFile();
+        File templateFilesDirectory = new File(parentDirectory, "TemplateFiles");
+        File[] files = templateFilesDirectory.listFiles();
 
         //
         ArrayList<Notebook> templates = new ArrayList<Notebook>();

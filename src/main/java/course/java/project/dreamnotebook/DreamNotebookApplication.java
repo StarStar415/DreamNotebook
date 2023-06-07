@@ -23,8 +23,14 @@ public class DreamNotebookApplication extends Application {
         stage.show();
 
         // set BGM
-        MusicPlayer.setMusic("leva-eternity-149473.mp3", 1.0);
-        MusicPlayer.play();
+        try{
+            MusicPlayer.setMusic("leva-eternity-149473.mp3", 1.0);
+            MusicPlayer.play();
+        }
+        catch(Exception e){
+            System.out.println("找不到音樂");
+            MusicPlayer.setNowMusicPlay(false);
+        }
     }
 
     public static void main(String[] args) {

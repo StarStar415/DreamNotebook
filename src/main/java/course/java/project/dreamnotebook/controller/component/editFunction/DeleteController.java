@@ -1,6 +1,7 @@
 package course.java.project.dreamnotebook.controller.component.editFunction;
 
 import course.java.project.dreamnotebook.controller.component.FxmlSwitchController;
+import course.java.project.dreamnotebook.controller.page.NotebookListController;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.object.Toast;
 import course.java.project.dreamnotebook.object.ToastAnimationTime;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 public class DeleteController implements EditFunction{
@@ -32,7 +34,15 @@ public class DeleteController implements EditFunction{
             return;
         }
 
-        File file = new File("src/main/resources/NotebookFiles/" + fileName + ".json");
+        File jarFile = null;
+        try {
+            jarFile = new File(NotebookListController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        File parentDirectory = jarFile.getParentFile();
+        File notebookFilesDirectory = new File(parentDirectory, "NotebookFiles");
+        File file = new File(notebookFilesDirectory.toString() + File.separator + fileName + ".json");
 
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
         deleteAlert.setTitle("刪除檔案");

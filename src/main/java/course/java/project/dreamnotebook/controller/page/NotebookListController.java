@@ -19,8 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
@@ -46,7 +46,7 @@ public class NotebookListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int gridRow = 0;
+               int gridRow = 0;
         int gridCol = 1;
 
         // 設置 GridPane 的行寬為 GridPane 寬度的1/4
@@ -68,12 +68,22 @@ public class NotebookListController implements Initializable {
         Node newNotebook = generatePreviewElement(new Notebook("New Notebook", "", false,formattedDateTime), true);
         putNodeToGridPane(gridPane, newNotebook, 0, 0);
 
-
         //讀取所有 notebook 的 json 檔案
-        File[] files = new File("src/main/resources/NotebookFiles").listFiles();
+        //        File[] files = new File("src/main/resources/NotebookFiles").listFiles();
+        File jarFile = null;
+        try {
+            jarFile = new File(NotebookListController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        File parentDirectory = jarFile.getParentFile();
+        File notebookFilesDirectory = new File(parentDirectory, "NotebookFiles");
+        File[] files = notebookFilesDirectory.listFiles();
 
         //根據最後更新時間排序notebook
         ArrayList<Notebook> notebooks =new ArrayList<Notebook>();
+        System.out.println(notebooks);
+        System.out.println(files);
         for (File file : files) {
             notebooks.add(Notebook.readFromJsonFile(file));
         }

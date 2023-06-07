@@ -5,6 +5,7 @@ import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.object.Toast;
 import course.java.project.dreamnotebook.object.ToastAnimationTime;
 import course.java.project.dreamnotebook.object.ToastType;
+import course.java.project.dreamnotebook.utils.MusicPlayer;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -29,7 +31,15 @@ public class UploadImageController implements EditFunction{
         fileChooser.setTitle("選取上傳圖片");
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
-            File destinationFile = new File("src/main/resources/images/upload/" + selectedFile.getName());
+            File jarFile = null;
+            try {
+                jarFile = new File(MusicPlayer.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            File parentDirectory = jarFile.getParentFile();
+            File uploadFolder = new File(parentDirectory, "upload");
+            File destinationFile = new File(uploadFolder.toString(), selectedFile.getName());
             try {
                 Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 String selectedText = textArea.getSelectedText();

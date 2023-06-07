@@ -19,6 +19,7 @@ import org.markdown4j.Markdown4jProcessor;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,7 +38,7 @@ public class SettingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         updateComboBox();
-        musicComboBox.setValue("leva-eternity-149473.mp3");
+        musicComboBox.setValue("");
         // 監聽選取項目的變化
         musicComboBox.setOnAction(event -> {
             String selectedMusic = musicComboBox.getValue();
@@ -80,7 +81,15 @@ public class SettingController implements Initializable {
 
     private void updateComboBox(){
         musicComboBox.getItems().clear();
-        File musicFolder = new File("src/main/resources/music/");
+        File jarFile = null;
+        try {
+            jarFile = new File(MusicPlayer.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        File parentDirectory = jarFile.getParentFile();
+        File musicFolder = new File(parentDirectory, "music");
+//        File musicFolder = new File("src/main/resources/music/");
         if (musicFolder.exists() && musicFolder.isDirectory()) {
             File[] files = musicFolder.listFiles();
             if (files != null) {

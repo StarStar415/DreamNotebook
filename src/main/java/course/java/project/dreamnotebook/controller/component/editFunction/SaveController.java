@@ -1,6 +1,7 @@
 package course.java.project.dreamnotebook.controller.component.editFunction;
 
 import course.java.project.dreamnotebook.controller.page.MainController;
+import course.java.project.dreamnotebook.controller.page.NotebookListController;
 import course.java.project.dreamnotebook.object.Notebook;
 import course.java.project.dreamnotebook.object.Toast;
 import course.java.project.dreamnotebook.object.ToastAnimationTime;
@@ -15,6 +16,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,7 +43,15 @@ public class SaveController implements EditFunction{
 
         String fileName = dialog.showAndWait().orElseThrow(() -> new Exception());
 
-        File file = new File("src/main/resources/NotebookFiles/" + fileName + ".json");
+        File jarFile = null;
+        try {
+            jarFile = new File(NotebookListController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        File parentDirectory = jarFile.getParentFile();
+        File notebookFilesDirectory = new File(parentDirectory, "NotebookFiles");
+        File file = new File(notebookFilesDirectory.toString(), fileName + ".json");
 
         // 確認檔名是否已存在
         if (file.exists()) {
@@ -67,7 +78,15 @@ public class SaveController implements EditFunction{
                 notebook.setTitle(setNewFileName());
             }
 
-            filePath = "src/main/resources/NotebookFiles/" + notebook.getTitle() + ".json";
+            File jarFile = null;
+            try {
+                jarFile = new File(NotebookListController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            File parentDirectory = jarFile.getParentFile();
+            File notebookFilesDirectory = new File(parentDirectory, "NotebookFiles");
+            filePath = notebookFilesDirectory.toString() + File.separator + notebook.getTitle() + ".json";
         }
         catch (Exception e){
             Toast.makeText(stage, "取消儲存", new ToastAnimationTime(), ToastType.INFO);
@@ -101,7 +120,7 @@ public class SaveController implements EditFunction{
             // 修改JSON 中的某个 key 的值
             jsonObject.put("content", textArea.getText());
             jsonObject.put("lastModify", getNowTime());
-            Files.write(path, jsonObject.toString().getBytes());
+            Files.write(path, jsonObject.toString().getBytes(StandardCharsets.UTF_8));
 
             Toast.makeText(stage, "儲存成功", new ToastAnimationTime(), ToastType.SUCCESS);
             notebook.setHasSaved(true);
